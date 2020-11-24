@@ -1,0 +1,179 @@
+from matrix import *  # matrix.py의 모든 함수들 가져오기
+import time
+import random
+import pygame
+import pygame as pg
+import sys
+pg.init()
+screen = pg.display.set_mode((1,1))
+def draw_matrix(m):
+    array = m.get_array()  # matrix의 객체로 부터 array라는 리스트 생
+    for y in range(m.get_dy()):  # y는 matrix의 각 행을 말함.
+        for x in range(m.get_dx()):
+            if array[y][x] == 0:
+                print("□", end='')
+            elif array[y][x] == 1:
+                print("■", end='')
+            else:
+                print("XX", end='')
+        print()
+
+rand = random.randrange(0, 12)
+def set_block(rand):
+    if rand == 0:
+        arrayBlk = [[1]] #enemy
+    elif rand == 1:
+        arrayBlk = [[1, 0, 0],[1, 1, 0],[1, 1, 1]]
+    elif rand == 2:
+        arrayBlk=[[1, 1, 1], [0, 1, 1],[0, 0, 1]]
+    elif rand == 3:
+        arrayBlk=[[0, 1, 0],[0, 1, 0],[1, 1, 1]]
+    elif rand == 4:
+        arrayBlk=[[1, 0, 1],[1, 1, 1],[1, 0, 1]]
+    elif rand == 5:
+        arrayBlk=[[1, 0, 0], [1, 0, 0], [1, 1, 1]]
+    elif rand == 6:
+        arrayBlk=[[1, 1, 1], [0, 0, 1], [0, 0, 1]]
+    elif rand == 7:
+        arrayBlk=[[0, 1, 0], [0, 1, 0], [0, 1, 1]]
+    elif rand == 8:
+        arrayBlk=[[0, 1, 0], [0, 1, 0], [1, 1, 0]]
+    elif rand == 9:
+        arrayBlk=[[0, 1, 0], [1, 1, 1], [0, 1, 0]]
+    elif rand == 10:
+        arrayBlk=[[1, 1, 1], [0, 1, 0], [0, 1, 0]]
+    elif rand == 11:
+        arrayBlk=[[1,1],[1,1]] #character
+    elif rand == 12:
+        arrayBlk=[[1,1],[1,1]] #item
+
+    return arrayBlk
+
+iScreenDy = 16  # 높이를 15칸으로 정의
+iScreenDx = 32  # 폭을 10칸으로 정의
+
+
+character_top = (iScreenDy + iScreenDx) // 6  # 초록색으로 지정해야함. , 나오는 도형의 좌측상단의 좌표y=0
+character_left = 29 # 나오는 도형의 좌측상단의 x좌표
+
+item_top= random.randrange(5,9) #파란색으로 지정해야함.
+item_left= 0
+
+enemy_top= random.randrange(9,14) #빨간색으로 지정해야함.
+enemy_left= 0
+
+enemy2_top= random.randrange(1,4) #빨간색으로 지정해야함.
+enemy2_left = 0
+
+arrayScreen = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],  # 0
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],  # 2
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],  # 4
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],  # 6
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],  # 8
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],  # 10
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],  # 12
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],  # 14
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+]
+
+item_speed = 2
+enemy_speed = 1
+enemy2_speed = 1
+
+#start=time.time()
+rand=random.randrange(1, 10)
+enemyBlk = Matrix(set_block(rand))
+
+while True:
+
+    iScreen = Matrix(arrayScreen)
+    # iscreen(입력스크린)
+    oScreen = Matrix(iScreen)
+    # oscreen(출력스크린)
+    charBlk = Matrix(set_block(11))
+    itemBlk = Matrix(set_block(12))
+    enemy2Blk = Matrix(set_block(0))
+
+
+    chartempBlk = iScreen.clip(character_top, character_left, character_top + charBlk.get_dy(), character_left + charBlk.get_dx())
+    chartempBlk = chartempBlk + charBlk
+    oScreen.paste(chartempBlk, character_top, character_left)
+
+    itemtempBlk = iScreen.clip(item_top, item_left, item_top + itemBlk.get_dy(), item_left + itemBlk.get_dx())
+    itemtempBlk = itemtempBlk + itemBlk
+    oScreen.paste(itemtempBlk, item_top, item_left)
+
+    enemytempBlk = iScreen.clip(enemy_top, enemy_left, enemy_top + enemyBlk.get_dy(), enemy_left + enemyBlk.get_dx())
+    enemytempBlk = enemytempBlk + enemyBlk
+    oScreen.paste(enemytempBlk, enemy_top, enemy_left)
+
+    enemy2tempBlk = iScreen.clip(enemy2_top, enemy2_left, enemy2_top + enemy2Blk.get_dy(), enemy2_left + enemy2Blk.get_dx())
+    enemy2tempBlk = enemy2tempBlk + enemy2Blk
+    oScreen.paste(enemy2tempBlk, enemy2_top, enemy2_left)
+    draw_matrix(oScreen);print()
+
+
+    item_left += 1
+    enemy_left += 1
+    enemy2_left += 1
+
+    for event in pg.event.get():
+        if event.type == pg.QUIT:
+            running = False
+            pg.quit()
+            sys.exit()
+        if event.type == pg.KEYDOWN:
+            if event.key == pg.K_LEFT:
+                character_top += 1
+                enemy_left += enemy_speed
+                enemy2_left += enemy2_speed
+                item_left += item_speed
+            elif event.key == pg.K_RIGHT:
+                character_top -= 1
+                enemy_left += enemy_speed
+                item_left += item_speed
+                enemy2_left += enemy2_speed
+        if event.type == pg.KEYUP:
+            enemy_left += enemy_speed
+            item_left += item_speed
+            enemy2_left += enemy2_speed
+
+    total_time=0
+    
+    if itemtempBlk.anyGreaterThan(1):
+        item_top += 1
+    if enemytempBlk.anyGreaterThan(1):
+        enemy_top -= 1
+    if enemy2tempBlk.anyGreaterThan(1):
+        enemy_top += 1
+
+    if item_left==28:
+        item_top = random.randrange(1,16)# 파란색으로 지정해야함.
+        if itemtempBlk.anyGreaterThan(1):
+            item_top += 1
+        item_left = 0
+        itemBlk = Matrix(set_block(12))
+    elif enemy_left==28:
+        enemy_top = random.randrange(1,16) # 빨간색으로 지정해야함.
+        if enemytempBlk.anyGreaterThan(1):
+            enemy_top -= 1
+        enemy_left = random.randrange(5,10)
+        rand = random.randrange(1, 10)
+        enemyBlk = Matrix(set_block(rand))
+    elif enemy2_left==27:
+        enemy2_top= random.randrange(1,16) #빨간색으로 지정해야함.
+        if enemy2tempBlk.anyGreaterThan(1):
+            enemy_top += 1
+        enemy2_left = 0
+        enemy2Blk = Matrix(set_block(0))
+
+
+    time.sleep(0.5)
