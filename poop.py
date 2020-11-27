@@ -27,6 +27,10 @@ def draw_matrix(m):
                 LMD.set_pixel(x, y, 1)
             elif array[y][x] == 2:
                 LMD.set_pixel(x, y, 2)
+            elif array[y][x] == 3:
+                LMD.set_pixel(x, y, 3)
+            elif array[y][x] == 4:
+                LMD.set_pixel(x, y, 4)
             elif array[y][x] == 5:
                 LMD.set_pixel(x, y, 5)
             elif array[y][x] == 6:
@@ -71,13 +75,13 @@ def set_block(rand):
     elif rand == 5:
         arrayBlk = [[1,1,1],[0,0,1],[0,1,1]]
     elif rand == 6:
-        arrayBlk = [[1, 1], [1, 1]]  # character
+        arrayBlk = [[4, 4], [4, 4]]  # character
     return arrayBlk
 
 Rand=random.randint(1,5)
 def set_color(Rand):
     if Rand == 1:
-        array2Blk = [[1, 1], [1, 1]]
+        array2Blk = [[3, 3], [3, 3]]
     if Rand == 2:
         array2Blk = [[2, 2], [2, 2]]
     elif Rand == 3:
@@ -196,15 +200,15 @@ while True:
 
     if enemytempBlk.anyGreaterThan(1):
         enemy_left = 0
-        enemy_top = random.randrange(1, 10)
+        enemy_top = random.randrange(2, 10)
         rand=random.randrange(1,5)
         enemyBlk = Matrix(set_block(rand))
 
     if item_left == 27:
         item_left = 0
-        item_top = random.randrange(1, 10)  # 파란색으로 지정해야함
+        item_top = random.randrange(2, 10)  # 파란색으로 지정해야함
         while(enemy_top-1 <= item_top <= enemy_top+2):
-            item_top = random.randrange(1,10)
+            item_top = random.randrange(2,10)
 
     if 25<=item_left<=26:
         if character_top-2<=item_top<=character_top+1:
@@ -213,7 +217,7 @@ while True:
             itemBlk = Matrix(set_color(Rand))
             while (enemy_top - 1 <= item_top <= enemy_top + 2):
                 item_left = 0
-                item_top = random.randrange(1, 10)
+                item_top = random.randrange(2, 10)
 
     if 23 <= enemy_left <= 25:
         if character_top - 2 <= enemy_top <= character_top + 1:
