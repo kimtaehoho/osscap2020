@@ -139,6 +139,8 @@ itemBlk = Matrix(set_color(Rand))
 print("아이템을 6(=30점)개 먹을때 마다 속도가 빨라집니다!")
 time.sleep(2)
 
+LED_init()
+
 while True:
     iScreen = Matrix(arrayScreen)
     # iscreen(입력스크린)
