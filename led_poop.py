@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import score_spread
 start = 'n'
+
 t = open("names.txt",'a')
 t.close()
 t = open("names.txt",'r')
@@ -15,9 +16,9 @@ while True:
     
         name_list.append(retry[0])
 
-
 while(1):
     start = input("계속 하시겠습니까?? (y/n)")
+    print(name_list)
     if start == 'n':
         break
     answer = input("등록된 사용자입니까? (y/n)")
@@ -37,7 +38,7 @@ while(1):
         
         # names related to ids: example ==> loze: id=1,  etc
         # 이런식으로 사용자의 이름을 사용자 수만큼 추가해준다.
-        names = ['NONE', 'kihun', 'dahyun', 'taeho', '???']
+        # names = ['NONE', 'kihun', 'dahyun', 'taeho', '???']
 
         # Initialize and start realtime video capture
         cam = cv2.VideoCapture(0)
@@ -75,11 +76,14 @@ while(1):
                 cv2.putText(img, str(confidence), (x+5,y+h-5), font, 1, (255,255,0), 1)  
         
             cv2.imshow('camera',img)
+            
             if id in name_list:
                 break
+            
             k = cv2.waitKey(10) & 0xff # Press 'ESC' for exiting video
             if k == 27:
                 break
+            
         # Do a bit of cleanup
         print("\n [INFO] Exiting Program and cleanup stuff")
         cam.release()
@@ -160,7 +164,7 @@ while(1):
             elif rand == 6:
                 arrayBlk = [[4, 4], [4, 4]]  # character
             return arrayBlk
-
+        
         Rand=random.randint(1,5)
         def set_color(Rand):
             if Rand == 1:
@@ -226,20 +230,25 @@ while(1):
         print("아이템을 6(=30점)개 먹을때 마다 속도가 빨라집니다!")
         time.sleep(2)
         LED_init()
-
+        i = 1
+        item_plus = score//30
+        enemy_plus = score//30
+        #item_speed = 1
+        #enemy_speed = 1
+        start_time = time.time()
+        speedup = False
         while True:
             iScreen = Matrix(arrayScreen)
             # iscreen(입력스크린)
             oScreen = Matrix(iScreen)
             # oscreen(출력스크린)
             charBlk = Matrix(set_block(6))
-
-
+            
             chartempBlk = iScreen.clip(character_top, character_left, character_top + charBlk.get_dy(),
                                        character_left + charBlk.get_dx())
             chartempBlk = chartempBlk + charBlk
             oScreen.paste(chartempBlk, character_top, character_left)
-
+            
             itemtempBlk = iScreen.clip(item_top, item_left, item_top + itemBlk.get_dy(), item_left + itemBlk.get_dx())
             itemtempBlk = itemtempBlk + itemBlk
             oScreen.paste(itemtempBlk, item_top, item_left)
@@ -247,22 +256,21 @@ while(1):
             enemytempBlk = iScreen.clip(enemy_top, enemy_left, enemy_top + enemyBlk.get_dy(), enemy_left + enemyBlk.get_dx())
             enemytempBlk = enemytempBlk + enemyBlk
             oScreen.paste(enemytempBlk, enemy_top, enemy_left)
+            time_pass = int(abs(start_time - time.time()))
             draw_matrix(oScreen);print()
 
-
+            item_plus = score//30
+            enemy_plus = score//30
             #아이템과 똥이 떨어지는 것을 표현하기 위함.
-            item_left += 1
-            enemy_left += 1
+            item_left +=  1 + item_plus
+            enemy_left += 1 + enemy_plus
 
-            item_speed = 1
-            enemy_speed = 1
+            
 
             gameover=False
-
+            
             #스코어가 30점씩 늘어날때 마다 스피드가 빨라지게 하는 코드 작성해야함.
-            if score % 30==0:
-                enemy_left += enemy_speed
-                item_left += item_speed
+            
 
             for event in pg.event.get():
                 if event.type == pg.QUIT:
@@ -271,20 +279,24 @@ while(1):
                     sys.exit()
                 if event.type == pg.KEYDOWN:
                     if event.key == pg.K_LEFT:
-                        character_top += 1
+                        if character_top < 12:
+                            character_top += 1
                     elif event.key == pg.K_RIGHT:
-                        character_top -= 1
+                        if character_top > 2:
+                            character_top -= 1
             if enemytempBlk.anyGreaterThan(7):
                 enemy_left = 2
                 enemy_top = random.randrange(4, 11)
                 rand=random.randrange(1,5)
                 enemyBlk = Matrix(set_block(rand))
+                
 
             if itemtempBlk.anyGreaterThan(7):
                 item_left = 1
                 item_top = random.randrange(3, 12)  # 파란색으로 지정해야함
                 while(enemy_top-1 <= item_top <= enemy_top+2):
                     item_top = random.randrange(3,12)
+                    
 
             if item_left==25:
                 if character_top-2<=item_top<=character_top+1:
@@ -295,15 +307,13 @@ while(1):
                         item_left = 1
                         item_top = random.randrange(3, 12)
 
-            if 23 <= enemy_left <= 25:
-                if character_top - 2 <= enemy_top <= character_top + 1:
+            if 23 <= enemy_left :
+                if character_top - 1  <= enemy_top <= character_top + 1:
                     gameover=True
                     break
 
-            if character_top==1 or character_top==13:
-                gameover = True
-                break
-            time.sleep(0.3)
+
+            time.sleep(0.1)
 
         if gameover == True:
             gameoScreen = Matrix(GameOver)
@@ -331,8 +341,11 @@ while(1):
         face_detector = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_default.xml')
 
         # For each person, enter one numeric face id
-        name_list.append(input("put your name first"))
-        face_id = input('\n enter user id ={} end press <return> ==>  '.format(len(name_list)-1))
+        n = input("put your name first")
+        name_list.append(n)
+        t = open("names.txt",'a')
+        t.writelines('%s\n' % n)
+        face_id = input('\n enter user id = {} end press <return> ==>  '.format(len(name_list)-1))
         
         print("\n [INFO] Initializing face capture. Look the camera and wait ...")
 
@@ -391,9 +404,7 @@ while(1):
         recognizer.write('trainer/trainer.yml') # recognizer.save() worked on Mac, but not on Pi
         # Print the numer of faces trained and end program
         print("\n [INFO] {0} faces trained. Exiting Program".format(len(np.unique(ids))))
-        
         continue
 t.close()        
          
-
 
