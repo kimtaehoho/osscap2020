@@ -1,6 +1,7 @@
 # osscap2020
 
 ***-------------프로그램 설치 및 사용법---------------------***
+
 **1. picamera 라즈베리 파이에 연결 및 세팅**
 
 참고 링크: https://inmile.tistory.com/17#:~:text=*%20%EC%B9%B4%EB%A9%94%EB%9D%BC%EB%A5%BC%20%EC%97%B0%EA%B2%B0%ED%95%A0%20%EB%95%8C%EB%8A%94%20%EB%9D%BC%EC%A6%88%EB%B2%A0%EB%A6%AC,%EB%81%88%20%EC%83%81%ED%83%9C%EC%97%90%EC%84%9C%20%EC%A7%84%ED%96%89%ED%95%9C%EB%8B%A4.&text=%ED%94%8C%EB%9E%AB%20%EC%BC%80%EC%9D%B4%EB%B8%94%20%ED%98%95%ED%83%9C%EB%A1%9C%20%EA%B5%AC%EC%84%B1,%EC%88%98%20%EC%9E%88%EB%8A%94%20%EC%83%81%ED%83%9C%EB%A1%9C%20%EB%A7%8C%EB%93%A0%EB%8B%A4
