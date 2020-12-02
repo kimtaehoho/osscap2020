@@ -103,3 +103,15 @@ https://blog.xcoda.net/97
 이 때, 점수가 **30점이 추가될 때 마다 아이템과 enemy가 내려오는 속도가 빨라집니다.**
 
 게임이 종료되면 terminal 화면에 인식했던 **사용자명과 점수**가 뜹니다. 그리고 **1 2 3등까지의 점수**도 함께 출력됩니다!
+
+## Cam 폴더 내 파일 역할 설명
+
+### haarcascades: 얼굴인식 관련 오픈소스
+### 01_face_dataset.py: 사용자 데이터 생성
+### 02_face_training.py: dataset 기반 사용자 학습
+### 03_face_recognition.py: 사용자 인식
+### LED_display.py: raspberry와 LED matrix 연결 
+### faceDetection.py: '얼굴'을 인식
+### face_rec_game.py: main 소스 파일
+### names.txt: 사용자 id 저장 txt 파일
+### score_spread.py: 점수 저장 및 불러오기
