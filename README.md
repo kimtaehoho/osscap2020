@@ -106,12 +106,12 @@ https://blog.xcoda.net/97
 
 ## <Cam 폴더 내 파일 역할 설명>
 
-### haarcascades: 얼굴인식 관련 오픈소스
-### 01_face_dataset.py: 사용자 데이터 생성
-### 02_face_training.py: dataset 기반 사용자 학습
-### 03_face_recognition.py: 사용자 인식
-### LED_display.py: raspberry와 LED matrix 연결 
-### faceDetection.py: '얼굴'을 인식
-### face_rec_game.py: main 소스 파일
-### names.txt: 사용자 id 저장 txt 파일
-### score_spread.py: 점수 저장 및 불러오기
+##### - haarcascades: 얼굴인식 관련 오픈소스
+##### - 01_face_dataset.py: 사용자 데이터 생성
+##### - 02_face_training.py: dataset 기반 사용자 학습
+##### - 03_face_recognition.py: 사용자 인식
+##### - LED_display.py: raspberry와 LED matrix 연결 
+##### - faceDetection.py: '얼굴'을 인식
+##### - face_rec_game.py: main 소스 파일
+##### - names.txt: 사용자 id 저장 txt 파일
+##### - score_spread.py: 점수 저장 및 불러오기
