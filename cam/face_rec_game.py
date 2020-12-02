@@ -307,13 +307,14 @@ while(1):
                         item_left = 1
                         item_top = random.randrange(3, 12)
 
-            if 23 <= enemy_left :
-                if character_top - 1  <= enemy_top <= character_top + 1:
-                    gameover=True
-                    break
-
-
-            time.sleep(0.1)
+            if 23 <= enemy_left <= 25:
+                if character_top - 2 <= enemy_top <= character_top + 1:
+                        gameover=True
+                        break
+            if character_top==1 or character_top==13:
+                gameover = True
+                break
+            time.sleep(0.2)
 
         if gameover == True:
             gameoScreen = Matrix(GameOver)
