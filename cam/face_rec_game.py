@@ -129,7 +129,7 @@ while(1):
                     elif array[y][x] == 7:
                         LMD.set_pixel(x, y, 7)
                 print()
-        #색 다르게 설정해야함.
+      
 
         GameOver = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -168,7 +168,7 @@ while(1):
         Rand=random.randint(1,5)
         def set_color(Rand):
             if Rand == 1:
-                array2Blk = [[3, 3], [3, 3]]
+                array2Blk = [[3, 3], [3, 3]] #item
             if Rand == 2:
                 array2Blk = [[2, 2], [2, 2]]
             elif Rand == 3:
@@ -181,22 +181,23 @@ while(1):
 
 
 
-        iScreenDy = 12  # 높이를 15칸으로 정의
-        iScreenDx = 26  # 폭을 10칸으로 정의
+        iScreenDy = 12  # 높이를 12칸으로 정의
+        iScreenDx = 26  # 폭을 26칸으로 정의
 
-        character_top = 6  # 초록색으로 지정해야함. , 나오는 도형의 좌측상단의 좌표y=0
-        character_left = 24  # 똥이 나오는 x좌표
+        character_top = 6  # 캐릭터 y좌표 초기 설정
+        character_left = 24  # 캐릭터 x좌표 초기 설정
 
-        item_top = 4 # 파란색으로 지정해야함. item 초기 y값
-        item_left = 0
+        item_top = 4 # 아이템 y좌표 초기 설정
+        item_left = 0 # 아이템 x좌표 초기 설정
 
-        enemy_top = 9  # 빨간색으로 지정해야함. enemy 초기 y값
-        enemy_left = 0
+        enemy_top = 9  # 똥 y좌표 초기 설정 
+        enemy_left = 0 # 똥 x좌표 초기 설정
 
 
 
         gameover=False
-
+        
+        #게임 화면
         arrayScreen = [
             [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7],  # 0
             [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7],
@@ -216,15 +217,15 @@ while(1):
             [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7]
         ]
 
-        item_speed = 1
-        enemy_speed = 1
+        item_speed = 1 #아이템 초기 속도 설정
+        enemy_speed = 1 #똥 초기 속도 설정
 
         score=0
 
-        rand = random.randrange(1, 5)
+        rand = random.randrange(1, 5) #똥 모양 무작위로 생성
         enemyBlk = Matrix(set_block(rand))
 
-        Rand = random.randrange(1, 5)
+        Rand = random.randrange(1, 5) #아이템 색깔 설정
         itemBlk = Matrix(set_color(Rand))
 
         print("아이템을 6(=30점)개 먹을때 마다 속도가 빨라집니다!")
@@ -264,14 +265,9 @@ while(1):
             #아이템과 똥이 떨어지는 것을 표현하기 위함.
             item_left +=  1 + item_plus
             enemy_left += 1 + enemy_plus
-
-            
-
+          
             gameover=False
             
-            #스코어가 30점씩 늘어날때 마다 스피드가 빨라지게 하는 코드 작성해야함.
-            
-
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     running = False
@@ -307,13 +303,10 @@ while(1):
                         item_left = 1
                         item_top = random.randrange(3, 12)
 
-            if 23 <= enemy_left <= 25:
+            if 23 <= enemy_left:
                 if character_top - 2 <= enemy_top <= character_top + 1:
                         gameover=True
                         break
-            if character_top==1 or character_top==13:
-                gameover = True
-                break
             time.sleep(0.2)
 
         if gameover == True:
