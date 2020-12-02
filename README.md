@@ -4,14 +4,14 @@
 
 참고 링크: https://inmile.tistory.com/17#:~:text=*%20%EC%B9%B4%EB%A9%94%EB%9D%BC%EB%A5%BC%20%EC%97%B0%EA%B2%B0%ED%95%A0%20%EB%95%8C%EB%8A%94%20%EB%9D%BC%EC%A6%88%EB%B2%A0%EB%A6%AC,%EB%81%88%20%EC%83%81%ED%83%9C%EC%97%90%EC%84%9C%20%EC%A7%84%ED%96%89%ED%95%9C%EB%8B%A4.&text=%ED%94%8C%EB%9E%AB%20%EC%BC%80%EC%9D%B4%EB%B8%94%20%ED%98%95%ED%83%9C%EB%A1%9C%20%EA%B5%AC%EC%84%B1,%EC%88%98%20%EC%9E%88%EB%8A%94%20%EC%83%81%ED%83%9C%EB%A1%9C%20%EB%A7%8C%EB%93%A0%EB%8B%A4
 
-//// picamera를 raspberry3에 연결
+### picamera를 raspberry3에 연결
 
-//// terminal에서 Update 진행
+### terminal에서 Update 진행
 
     $ sudo apt-get update
     $ sudo apt-get upgrade
 
-//// terminal에서 카메라 enable
+### terminal에서 카메라 enable
 
     $ sudo raspi-config
 
@@ -24,12 +24,12 @@
 참고 링크:
 https://blog.xcoda.net/97
 
-//// opencv를 설치할 디렉토리를 생성 후,
+### opencv를 설치할 디렉토리를 생성 후,
 
     mkdir openCV
     cd openCV
 
-//// 다음 명령어를 차례로 시행합니다.
+### 다음 명령어를 차례로 시행합니다.
 
     sudo apt-get update
     wget https://github.com/dltpdn/opencv-for-rpi/releases/download/4.2.0_buster_pi3b/opencv4.2.0.deb.tar
@@ -37,12 +37,12 @@ https://blog.xcoda.net/97
     sudo apt-get install -y ./OpenCV*.deb
     pkg-config --modversion opencv4
 
-//// python3 명령어 입력 후 opencv 설치 확인
+### python3 명령어 입력 후 opencv 설치 확인
 
     import cv2
     cv2.__version__
 
-//// 설치 완료
+### 설치 완료
 
 ## **3. 프로젝트 실행**
 
@@ -52,7 +52,7 @@ https://blog.xcoda.net/97
 
 ## **4. 프로젝트 설명**
 
-*////처음 소스코드를 실행하면 **계속하시겠습니까??** 문구가 뜹니다.*
+#### 처음 소스코드를 실행하면 **계속하시겠습니까??** 문구가 뜹니다.
 
 ***y를 누르면 실행***
 
