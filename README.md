@@ -15,7 +15,7 @@
 
     $ sudo raspi-config
 
-interface option -> camera 들어가서 enable 하시겠습니까? 가 뜨면 yes 설정 후 닫기
+### interface option -> camera 들어가서 enable 하시겠습니까? 가 뜨면 yes 설정 후 닫기
 
 ## **2. opencv 설치(python은 이미 설치됨을 전제)**
 
@@ -50,45 +50,47 @@ https://blog.xcoda.net/97
     $ cd cam/
     $ python3 face_rec_game.py
 
-## **4. 프로젝트 설명**
+## **4. 프로젝트 흐름 설명**
 
-#### - 처음 소스코드를 실행하면 *계속하시겠습니까??* 문구가 뜹니다.
+### 처음 소스코드를 실행하면 *계속하시겠습니까??* 문구가 뜹니다.
 
 ##### y를 누르면 실행
 
-#### - *등록된 사용자입니까?* 문구가 뜹니다.
+### *등록된 사용자입니까?* 문구가 뜹니다.
 
-##### + 등록된 사용자면 y 입력
+##### 등록된 사용자면 y 입력
 
-#### - 화면이 뜨고 카메라에 얼굴을 인식시키면 인식되자마자 게임 실행
+ - 화면이 뜨고 카메라에 얼굴을 인식시키면 인식되자마자 게임 실행
 
-##### + 등록되지 않은 사용자면 n 입력
+#####  등록되지 않은 사용자면 n 입력
 
-*//// id를 입력하라고 뜹니다. 예시)put your name first:dahyun*
+-  id를 입력하라고 뜹니다. *예시)put your name first:dahyun*
 
--> enter user id = {?} end press <return> ==>  라는 명령어가 뜨면 입력하라는 숫자를 입력해줍니다.(정수 아이디) 
+        enter user id = {?} end press <return> ==> 
+        
+-  라는 명령어가 뜨면 입력하라는 숫자를 입력해줍니다.(정수 아이디) 
   
-  예시)enter user id = 1 end press <return> ==> 1
+        예시)enter user id = 1 end press <return> ==> 1
   
--> "[INFO] Initializing face capture. Look the camera and wait ..."
+        "[INFO] Initializing face capture. Look the camera and wait ..."
 
-*문구와 함께 모니터에 화면이 뜨면 카메라 앞을 정면으로 바라봐줍니다 멈춰서 가까이 바라보고, 마스크를 벗어야 학습이 더 잘 됩니다 *
+- 문구와 함께 모니터에 화면이 뜨면 카메라 앞을 정면으로 바라봐줍니다 멈춰서 가까이 바라보고, 마스크를 벗어야 학습이 더 잘 됩니다 
 
-*그리고 카메라를 살짝씩 상하좌우로 움직여줍니다. *
+- 그리고 카메라를 살짝씩 상하좌우로 움직여줍니다. 
 
-*////그럼 몇 초 뒤 화면이 종료, 학습이 완료됩니다.*
+### 몇 초 뒤 화면이 종료, 학습이 완료됩니다.
   
-->  [INFO] Exiting Program and cleanup stuff"
+        [INFO] Exiting Program and cleanup stuff"
 
-->  [INFO] Training faces. It will take a few seconds. Wait ...
+        [INFO] Training faces. It will take a few seconds. Wait ...
 
-->  [INFO] {0} faces trained. Exiting Program"
+        [INFO] {0} faces trained. Exiting Program"
 
-*////위 세 문장이 출력 완료되면 성공적으로 종료.*
+### *위 세 문장이 출력 완료되면 성공적으로 종료.*
 
 *////이후 처음 출력 화면으로 돌아갑니다.*
 
-## ***<게임 설명>***
+## <게임 설명>
 
 게임은 **키보드 왼쪽 오른쪽 화살표**를 눌러 합니다.
 
