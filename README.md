@@ -18,7 +18,9 @@ $ sudo raspi-config
 interface option -> camera 들어가서 enable 하시겠습니까? 가 뜨면 yes 설정 후 닫기
 
 2. opencv 설치(python은 이미 설치됨을 전제)
+
 ** 정석대로 설치 시 build에 너무 오랜 시간이 걸리고, raspberry 과열로 오류가 떠서 이미 build된 파일이 있는 파일을 이용하여 설치하였습니다 **
+
 참고 링크:
 https://blog.xcoda.net/97
 
