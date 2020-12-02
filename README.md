@@ -8,12 +8,12 @@
 
 //// terminal에서 Update 진행
 
-  $ sudo apt-get update
-  $ sudo apt-get upgrade
+    $ sudo apt-get update
+    $ sudo apt-get upgrade
 
 //// terminal에서 카메라 enable
 
-  $ sudo raspi-config
+    $ sudo raspi-config
 
 *interface option -> camera 들어가서 enable 하시겠습니까? 가 뜨면 yes 설정 후 닫기*
 
@@ -26,29 +26,29 @@ https://blog.xcoda.net/97
 
 //// opencv를 설치할 디렉토리를 생성 후,
 
-  mkdir openCV
-  cd openCV
+    mkdir openCV
+    cd openCV
 
 //// 다음 명령어를 차례로 시행합니다.
 
-  sudo apt-get update
-  wget https://github.com/dltpdn/opencv-for-rpi/releases/download/4.2.0_buster_pi3b/opencv4.2.0.deb.tar
-  tar -xvf opencv4.2.0.deb.tar
-  sudo apt-get install -y ./OpenCV*.deb
-  pkg-config --modversion opencv4
+    sudo apt-get update
+    wget https://github.com/dltpdn/opencv-for-rpi/releases/download/4.2.0_buster_pi3b/opencv4.2.0.deb.tar
+    tar -xvf opencv4.2.0.deb.tar
+    sudo apt-get install -y ./OpenCV*.deb
+    pkg-config --modversion opencv4
 
 //// python3 명령어 입력 후 opencv 설치 확인
 
-  import cv2
-  cv2.__version__
+    import cv2
+    cv2.__version__
 
 //// 설치 완료
 
 ## **3. 프로젝트 실행**
 
-  $ git clone https://github.com/kimtaehoho/osscap2020.git
-  $ cd cam/
-  $ python3 face_rec_game.py
+    $ git clone https://github.com/kimtaehoho/osscap2020.git
+    $ cd cam/
+    $ python3 face_rec_game.py
 
 ## **4. 프로젝트 설명**
 
