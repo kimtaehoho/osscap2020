@@ -116,3 +116,6 @@ https://blog.xcoda.net/97
 ##### - face_rec_game.py: main 소스 파일
 ##### - names.txt: 사용자 id 저장 txt 파일
 ##### - score_spread.py: 점수 저장 및 불러오기
+
+## <Demo 영상 유튜브 링크>
+##### https://youtu.be/11nk0VC1CjI
